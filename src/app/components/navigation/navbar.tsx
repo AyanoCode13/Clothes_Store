@@ -1,14 +1,38 @@
+import Link from "next/link"
+
 export default function Navbar(){
+
+    const routes = [
+        {
+            name: "Home",
+            path: "/"
+        },
+        {
+            name: "About",
+            path: "/about"
+        },
+        {
+            name: "Services",
+            path: "/services"
+        },
+        {
+            name: "Contact",
+            path: "/contact"
+        }
+    ]
+
     return(
-        <div className="flex justify-between items-center py-4 px-6 bg-white shadow-lg">
-            <div className="text-2xl font-bold">Logo</div>
-            <div className="flex gap-4">
-                <a href="#" className="text-lg">Home</a>
-                <a href="#" className="text-lg">About</a>
-                <a href="#" className="text-lg">Services</a>
-                <a href="#" className="text-lg">Contact</a>
-            </div>
+        <nav className="navbar">
+            <div className="navbar-logo">Logo</div>
+            <ul className="navbar-list">
+              {routes.map((route,index)=>{
+                return (
+                <li key={index} className="navbar-list-item">
+                    <Link href={route.path}>{route.name}</Link>
+                </li>)
+              })}
+            </ul>
             
-        </div>
+        </nav>
     )
 }

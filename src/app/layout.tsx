@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="luxury">
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider>
           <CartProvider>

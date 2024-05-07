@@ -5,11 +5,9 @@ import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 
 export default async function Home() {
- 
-
   return (
-    <main>
-      
+    <main className="flex items-center justify-center">
+     
     </main>
   );
 }

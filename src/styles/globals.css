@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body{
+
+    @apply overflow-hidden;
+}
+
+.navbar{
+
+}
+.navbar-logo{
+
+}
+.navbar-list{
+
+}
+.navbar-item{
+    
+}

@@ -8,6 +8,7 @@ export default function Navbar(){
                 <a href="#" className="text-lg">Services</a>
                 <a href="#" className="text-lg">Contact</a>
             </div>
+         
             
         </div>
     )

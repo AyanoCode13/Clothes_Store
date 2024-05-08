@@ -3,11 +3,15 @@ import Link from "next/link";
 import { CreatePost } from "~/app/components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import CategoriesTabs from "../components/categories.tabs";
+import { getClothes } from "../data";
 
 export default async function Home() {
+  const clothes = await getClothes({category:"Bottoms", gender:"Female"})
+  console.log(clothes)
   return (
-    <main className="flex items-center justify-center">
-     
+    <main className="flex flex-col items-center justify-center">
+         <CategoriesTabs categories={[]} products={clothes}/> 
     </main>
   );
 }

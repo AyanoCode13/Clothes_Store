@@ -1,24 +1,14 @@
-import Link from "next/link";
-
 import { CreatePost } from "~/app/components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
-import CategoriesTabs from "../components/categories.tabs";
-import { clothes} from "../data";
-import fs from "fs"
-
+import { clothes } from "~/utils/data";
+import CategoriesTabs from "~/ui/tabs/categories.tabs";
 
 export default async function Home() {
- 
-
-
-  
-  const data = clothes.filter(
-    (c) => c.category === "Woman",
-  );
+  const data = clothes.filter((c) => c.category === "Woman");
   return (
     <main className="flex flex-col items-center justify-center">
-         <CategoriesTabs products={data}/> 
+      <CategoriesTabs products={data} />
     </main>
   );
 }
@@ -26,8 +16,6 @@ export default async function Home() {
 async function CrudShowcase() {
   const session = await getServerAuthSession();
   if (!session?.user) return null;
-
-  
 
   const latestPost = await api.post.getLatest();
 

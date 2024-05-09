@@ -1,5 +1,5 @@
-import CategoriesTabs from "~/app/components/categories.tabs";
-import { clothes, getClothes } from "~/app/data";
+import CategoriesTabs from  "~/ui/tabs/categories.tabs";
+import { clothes, getClothes } from "~/utils/data";
 
 export default async function Category({
   params,

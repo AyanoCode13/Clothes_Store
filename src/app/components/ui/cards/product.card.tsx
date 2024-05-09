@@ -1,7 +1,7 @@
 "use client";
 
-import { useCart } from "../providers/cart.provider";
-import type { ProductCardDAO } from "../types/ProductDAO";
+import { useCart } from "~/providers/cart.provider";
+import type { ProductCardDAO } from "~/types/ProductDAO"
 
 export default function ProductCard({product}:{product:ProductCardDAO}) {
     const cart = useCart();

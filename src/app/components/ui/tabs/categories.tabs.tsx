@@ -1,6 +1,7 @@
 import React from "react";
-import type { ProductCardDAO } from "../types/ProductDAO";
-import ProductCard from "./product.card";
+import type { ProductCardDAO } from "~/types/ProductDAO";
+import ProductCard from "~/ui/cards/product.card"
+
 
 export default function CategoriesTabs({
   products,

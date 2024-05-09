@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCart } from "~/app/providers/cart.provider";
+import { useCart } from "~/providers/cart.provider";
 
 
 export default function CartButton() {

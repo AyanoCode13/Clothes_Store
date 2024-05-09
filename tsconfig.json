@@ -26,7 +26,18 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "~/api/*":["./src/app/api/*"],
+      "~/pages/*":["./src/app/(pages)/*"],
+      "~/ui/*":["./src/app/components/ui/*"],
+      "~/layout/*":["./src/app/components/layout/*"],
+      "~/types/*":["./src/types/*"],
+      "~/utils/*":["./src/utils/*"],
+      "~/styles/*":["./src/styles/*"],
+      "~/server/*":["./src/server/*"],
+      "~/server/routers/*":["./src/server/api/routers*"],
+      
+      
     }
   },
   "include": [

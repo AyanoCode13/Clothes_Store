@@ -3,13 +3,12 @@ import type { ProductCardDAO } from "../types/ProductDAO";
 import ProductCard from "./product.card";
 
 export default function CategoriesTabs({
-  categories,
   products,
 }: {
-  categories: [];
+
   products: ProductCardDAO[];
 }) {
-  const cat = [
+  const categories = [
     "Most Popular",
     "Tops",
     "Bottoms",
@@ -20,7 +19,7 @@ export default function CategoriesTabs({
 
   return (
     <div role="tablist" className="tabs tabs-lifted w-full">
-      {cat.map((c, index) => {
+      {categories.map((c, index) => {
         return (
           <React.Fragment key={index}>
             <input
@@ -37,7 +36,7 @@ export default function CategoriesTabs({
             >
               <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {products
-                  .filter((p) => p.category === c)
+                  .filter((p) => p.subcategory === c)
                   .map((p, index) => {
                     return (
                      <ProductCard key={index} product={p} />

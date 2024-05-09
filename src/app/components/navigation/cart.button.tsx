@@ -1,9 +1,13 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCart } from "~/app/providers/cart.provider";
+
 
 export default function CartButton() {
   const cart = useCart();
+  const router = useRouter();
 
   
   return (
@@ -32,10 +36,10 @@ export default function CartButton() {
         className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
       >
         <div className="card-body">
-          <span className="text-lg font-bold">Nr. Items:{cart.total_items}</span>
+          <span className="text-lg font-bold flex">Nr. Items: {cart.total_items}</span>
           {
             cart.products.map((product, index) => (
-              <div key={index} className="flex justify-between">
+              <div key={index} className="items-start justify-end gap-2 flex">
                 <span>{product.name}</span>
                 <span>{product.quantity}</span>
                 <span>{product.price}</span>
@@ -44,7 +48,7 @@ export default function CartButton() {
           }
           <span className="text-info">Total: {cart.total_price}</span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+            <Link href="/cart/checkout" className="btn btn-block">View Cart</Link>
           </div>
         </div>
       </div>

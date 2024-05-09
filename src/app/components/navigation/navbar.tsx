@@ -1,7 +1,7 @@
-"use client"
-import { usePathname } from "next/navigation";
-import { type Dispatch, ReactNode, type SetStateAction, useState } from "react";
-
+"use client";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { type ReactNode } from "react";
 
 function ThemeSwitcher() {
   return (
@@ -20,7 +20,7 @@ function ThemeSwitcher() {
         <circle cx="12" cy="12" r="5" />
         <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
       </svg>
-      <input type="checkbox" value="dark" className="toggle theme-controller" />
+      <input type="checkbox" value="dark" className="theme-controller toggle" />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -38,32 +38,16 @@ function ThemeSwitcher() {
   );
 }
 
-function NavbarItem({ isActive, setIsActive, title }:{ isActive:boolean, setIsActive:Dispatch<SetStateAction<boolean>>, title:string}){
-  if(isActive){
-    return (
-      <li>
-        <a className="active">{title}</a>
-      </li>
-    )
-  }
-  return (
-    <li>
-      <a onClick={()=>setIsActive(true)}>{title}</a>
-    </li>
-  )
-}
-
-
-export default function Navbar({children}:{children:ReactNode}) {
+export default function Navbar({ children }: { children: ReactNode }) {
   const pathName = usePathname();
-  
+  const router = useRouter();
+
   function ResponsiveMenu() {
     return (
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+        className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
       >
-       
         <li>
           <details>
             <summary>Man</summary>
@@ -77,35 +61,34 @@ export default function Navbar({children}:{children:ReactNode}) {
             </ul>
           </details>
         </li>
-  
       </ul>
     );
   }
-  
+
   function MainMenu() {
     return (
       <ul className="menu menu-horizontal px-1">
         <li>
-          <a className={pathName === "/" || pathName==="/woman" ? "active":""} href="/">Woman</a>
+          <button
+            className={
+              pathName === "/woman" || pathName === "/" ? "active" : ""
+            }
+            onClick={() => router.push("/")}
+          >
+            Woman
+          </button>
         </li>
         <li>
-          <details>
-            <summary>Man</summary>
-            <ul className="p-2">
-              <li>
-                <a>Submenu 1</a>
-              </li>
-              <li>
-                <a>Submenu 2</a>
-              </li>
-            </ul>
-          </details>
+          <Link className={pathName === "/man" ? "active" : ""} href={"/man"}>Man</Link>
+         
         </li>
         <li>
-          <a className={pathName === "/kid" ? "active":""} href="/kid">Kid</a>
+        <Link className={pathName === "/kid" ? "active" : ""} href={"/kid"}>Kid</Link>
+         
         </li>
         <li>
-          <a>Baby</a>
+        <Link className={pathName === "/baby" ? "active" : ""} href={"/baby"}>Baby</Link>
+         
         </li>
       </ul>
     );
@@ -139,9 +122,7 @@ export default function Navbar({children}:{children:ReactNode}) {
         <MainMenu />
       </div>
 
-      <div className="navbar-end">
-       {children}
-      </div>
+      <div className="navbar-end">{children}</div>
     </div>
   );
 }

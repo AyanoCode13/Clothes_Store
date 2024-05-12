@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { stripe } from "~/server/stripe/client";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest):Promise<NextResponse> {
   
   console.log(request.headers.get('origin'));
   
@@ -36,7 +36,8 @@ export async function POST(request: NextRequest) {
       sessionId: session.id,
       clientSecret:session.client_secret
     })
-  } catch (error) {
+  } 
+  catch (error) {
     console.log(error.message);
     return NextResponse.json({message:"abc"},{ status:500} )
   }

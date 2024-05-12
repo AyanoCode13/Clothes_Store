@@ -45,9 +45,19 @@ export const authOptions: NextAuthOptions = {
         ...session.user,
         id: user.id,
       },
-      
     }),
+    async signIn({ user, account, profile, email, credentials }) {
+      
+      return true
+    },
+    async redirect({ url, baseUrl }) {
+      return baseUrl
+    },
+    
+    
   },
+
+  
   adapter: PrismaAdapter(db) as Adapter,
   providers: [
     DiscordProvider({
@@ -59,7 +69,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       
       
-    })
+    }),
+    
+    
     
     
     /**
@@ -74,7 +86,9 @@ export const authOptions: NextAuthOptions = {
   ],
   session:{
     strategy:"database"
-  }
+  },
+
+  
 };
 
 /**

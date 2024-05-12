@@ -9,14 +9,15 @@ import { useCallback } from 'react';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
+
 export default function Checkout() {
-  const fetchClientSecret = useCallback(() => {
+  const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
-    return fetch("http://localhost:3000/api/stripe", {
+    const res = await fetch("http://localhost:3000/api/stripe", {
       method: "POST",
-    })
-      .then((res) => res.json())
-      .then((data) => data.clientSecret);
+    });
+    const data = await res.json();
+    return data.clientSecret;
   }, []);
 
   const options = {fetchClientSecret};

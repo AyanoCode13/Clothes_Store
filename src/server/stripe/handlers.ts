@@ -18,6 +18,7 @@ export const createCheckoutSession =  async ({items}:{items:CartProduct[]}) =>{
   
   })  
   try {
+    console.log(stripe);
     const session: Stripe.Response<Stripe.Checkout.Session> = await stripe.checkout.sessions.create({
       line_items: checkout_items,
       mode:"payment",
@@ -30,8 +31,8 @@ export const createCheckoutSession =  async ({items}:{items:CartProduct[]}) =>{
     return session.url
   } 
   catch (error) {
-    console.log(error.message);
-    return {message:"abc"}
+    
+    return {message:error.message}
   }
 
 }

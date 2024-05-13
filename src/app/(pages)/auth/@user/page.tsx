@@ -1,5 +1,5 @@
 import { clothes } from "~/utils/data";
-import CategoriesTabs from "~/ui/tabs/categories.tabs";
+import CategoriesTabs from "~/components/ui/tabs/categories.tabs";
 
 export default async function Home() {
   const data = clothes.filter((c) => c.category === "Woman");

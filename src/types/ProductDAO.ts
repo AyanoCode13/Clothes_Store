@@ -1,5 +1,5 @@
 export type ProductCardDAO = {
-import { CheckoutProduct } from '~/types/ProductDAO';
+
     id: number;
     name: string;
     price: number;

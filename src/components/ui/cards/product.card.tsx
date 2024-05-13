@@ -1,11 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCart } from "~/providers/cart.provider";
 import type { ProductCardDAO } from "~/types/ProductDAO"
 
 export default function ProductCard({product}:{product:ProductCardDAO}) {
     const cart = useCart();
-    console.log(cart);
+    const router = useRouter();
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl">
       <figure>
@@ -19,6 +20,7 @@ export default function ProductCard({product}:{product:ProductCardDAO}) {
         <p>{product.description}</p>
         <div className="card-actions justify-end">
           <p>Price: {product.price}</p>
+          <button className="btn btn-primary" onClick={()=>router.push("/auth/"+product.id)}>View</button>
           <button className="btn btn-primary" onClick={()=>{ cart.dispatch({"type":"ADD_TO_CART", payload:{...product, quantity:1}})}}>Add To Cart</button>
         </div>
       </div>

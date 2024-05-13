@@ -29,7 +29,7 @@ export default function Checkout() {
       stripe={stripePromise}
       options={options}
     >
-      <EmbeddedCheckout  className='h-screen'/>
+      <EmbeddedCheckout  className='h-screen w-screen'/>
     </EmbeddedCheckoutProvider>
   </div>
 )

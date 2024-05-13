@@ -20,7 +20,7 @@ export const clothes = [
         name:"V-Neck T-Shirt",
         subcategory:"Tops",
         category:"Man",
-        price:25,
+        price:1,
         sizes:["S","M","L","XL","XXL"],
     },
     {

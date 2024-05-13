@@ -10,26 +10,26 @@ export default function CategoriesTabs({
   products: ProductCardDAO[];
 }) {
   const categories = [
-    "Most Popular",
+    "Popular",
     "Tops",
     "Bottoms",
     "Accessories",
     "Jackets",
-    "On Sale",
+    "Sale",
   ];
 
   return (
     <div role="tablist" className="tabs tabs-lifted w-full">
       {categories.map((c, index) => {
         return (
-          <React.Fragment key={index}>
+          <React.Fragment key={index} >
             <input
               type="radio"
               name="my_tabs_2"
               role="tab"
               className="tab"
               aria-label={c}
-              defaultChecked={c === "Most Popular" ? true : false}
+              defaultChecked={c === "Popular" ? true : false}
             />
             <div
               role="tabpanel"

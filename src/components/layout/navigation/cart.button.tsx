@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "~/providers/cart.provider";
+import { createCheckoutSession } from "~/server/stripe/handlers";
 
 
 export default function CartButton() {
@@ -10,14 +11,8 @@ export default function CartButton() {
   const router = useRouter();
   
   const handleCheckout = async ()=>{
-    const res = await fetch("http://localhost:3000/api/stripe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cart.products),
-    })
-    const chckout_url = await res.json() as string;
+    
+    const chckout_url = await createCheckoutSession({items:cart.products});
     router.push(chckout_url);
 
   }

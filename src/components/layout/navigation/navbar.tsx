@@ -71,7 +71,7 @@ export default function Navbar({ children }: { children: ReactNode }) {
         <li>
           <button
             className={
-              pathName === "/woman" || pathName === "/" ? "active" : ""
+              pathName === "/auth/woman" || pathName === "/auth" ? "active" : ""
             }
             onClick={() => router.push("/")}
           >
@@ -79,15 +79,15 @@ export default function Navbar({ children }: { children: ReactNode }) {
           </button>
         </li>
         <li>
-          <Link className={pathName === "/man" ? "active" : ""} href={"/man"}>Man</Link>
+          <Link className={pathName === "/auth/man" ? "active" : ""} href={"/auth/man"}>Man</Link>
          
         </li>
         <li>
-        <Link className={pathName === "/kid" ? "active" : ""} href={"/kid"}>Kid</Link>
+        <Link className={pathName === "/auth/kid" ? "active" : ""} href={"/auth/kid"}>Kid</Link>
          
         </li>
         <li>
-        <Link className={pathName === "/baby" ? "active" : ""} href={"/baby"}>Baby</Link>
+        <Link className={pathName === "/auth/baby" ? "active" : ""} href={"/auth/baby"}>Baby</Link>
          
         </li>
       </ul>

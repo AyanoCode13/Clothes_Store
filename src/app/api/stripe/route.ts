@@ -1,41 +1,36 @@
 import { type NextRequest, NextResponse } from "next/server";
+import type Stripe from "stripe";
 import { stripe } from "~/server/stripe/client";
+import type { CheckoutProduct } from "~/types/ProductDAO";
 
-export async function POST(request: NextRequest):Promise<NextResponse> {
+export async function POST(request: NextRequest) {
   
-  console.log(request.headers.get('origin'));
-  
-  try {
-    const session = await stripe.checkout.sessions.create({
-      ui_mode: "embedded",
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            
-            currency: "gbp",
-            product_data: {
-              name: "Tshirt",
-              description: "Test product",
-              
-            },
-            
-            unit_amount: 2000,
-          },
+  const items = await request.json() as CheckoutProduct[];
+  const checkout_items = items.map(item=>{
+    return {
+      quantity: item.quantity,
+      price_data: {
+        currency: "gbp",
+        product_data: {
+          name: item.name,
+          description: item.description,
           
-    
         },
-        
-      ],
+        unit_amount: item.price * 100,
+      },
+    }
+  
+  })  
+  try {
+    const session: Stripe.Response<Stripe.Checkout.Session> = await stripe.checkout.sessions.create({
+      line_items: checkout_items,
       mode:"payment",
-      return_url: `${request.headers.get('origin')}/return?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: "http://localhost:3000",
+      cancel_url: "http://localhost:3000",
+      automatic_tax: { enabled: true },   
+      
     });
-    console.log(session) 
-    return NextResponse.json({
-      sessionId: session.id,
-      clientSecret:session.client_secret
-    })
+    return NextResponse.json(session.url)
   } 
   catch (error) {
     console.log(error.message);

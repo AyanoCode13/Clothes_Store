@@ -8,6 +8,19 @@ import { useCart } from "~/providers/cart.provider";
 export default function CartButton() {
   const cart = useCart();
   const router = useRouter();
+  
+  const handleCheckout = async ()=>{
+    const res = await fetch("http://localhost:3000/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cart.products),
+    })
+    const chckout_url = await res.json() as string;
+    router.push(chckout_url);
+
+  }
 
   
   return (
@@ -48,7 +61,7 @@ export default function CartButton() {
           }
           <span className="text-info">Total: {cart.total_price}</span>
           <div className="card-actions">
-            <Link href="/cart/checkout" className="btn btn-block">View Cart</Link>
+           <button className="btn btn-primary" onClick={handleCheckout}>Checkout</button>
           </div>
         </div>
       </div>

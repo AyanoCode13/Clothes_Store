@@ -3,11 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import Footer from "./components/layout/footer/footer";
-import Navbar from "./components/layout/navigation/navbar";
-import { CartProvider } from "../providers/cart.provider";
-import Avatar from "./components/layout/navigation/avatar";
-import CartButton from "./components/layout/navigation/cart.button";
+
 
 const inter = Inter({
   subsets: ["latin"],

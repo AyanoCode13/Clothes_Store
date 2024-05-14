@@ -37,7 +37,7 @@ export default function CategoriesTabs({
             >
               <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {products
-                  .filter((p) => p.subcategory === c)
+                  .filter((p) => p.subcategory.toLowerCase() === c.toLowerCase())
                   .map((p, index) => {
                     return (
                      <ProductCard key={index} product={p} />

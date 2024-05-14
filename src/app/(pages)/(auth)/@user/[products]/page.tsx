@@ -1,7 +1,7 @@
 import CategoriesTabs from  "~/components/ui/tabs/categories.tabs";
-import { clothes, getClothes } from "~/utils/data";
+import { clothes } from "~/utils/data";
 
-export default async function Category({
+export default async function Products({
   params,
 }: {
   params: { category: "Woman" | "Man" | "Kid" | "Baby" };

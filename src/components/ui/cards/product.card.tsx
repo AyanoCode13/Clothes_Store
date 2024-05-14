@@ -20,7 +20,7 @@ export default function ProductCard({product}:{product:ProductCardDAO}) {
         <p>{product.description}</p>
         <div className="card-actions justify-end">
           <p>Price: {product.price}</p>
-          <button className="btn btn-primary" onClick={()=>router.push("/auth/"+product.id)}>View</button>
+          <button className="btn btn-primary" onClick={()=>router.push("/"+product.category+"/"+product.id)}>View</button>
           <button className="btn btn-primary" onClick={()=>{ cart.dispatch({"type":"ADD_TO_CART", payload:{...product, quantity:1}})}}>Add To Cart</button>
         </div>
       </div>

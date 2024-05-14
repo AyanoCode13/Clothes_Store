@@ -13,6 +13,7 @@ import { ZodError } from "zod";
 
 import { getServerAuthSession } from "~/server/auth";
 import { db } from "~/server/db";
+import { stripe } from "../stripe/client";
 
 /**
  * 1. CONTEXT
@@ -31,6 +32,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 
   return {
     db,
+    stripe,
     session,
     ...opts,
   };
@@ -95,9 +97,9 @@ export const publicProcedure = t.procedure;
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
+export const authProcedure = t.procedure.use(({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: "UNAUTHORIZED" });    
   }
   return next({
     ctx: {
@@ -105,4 +107,17 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
       session: { ...ctx.session, user: ctx.session.user },
     },
   });
+});
+
+export const adminProcedure = t.procedure.use(({ ctx, next }) => {
+  if(ctx.session && ctx.session.user.role ==="admin"){
+    return next({
+      ctx: {
+        // infers the `session` as non-nullable
+        session: { ...ctx.session, user: ctx.session.user },
+      },
+    });
+  
+  }
+  throw new TRPCError({ code: "UNAUTHORIZED" });
 });

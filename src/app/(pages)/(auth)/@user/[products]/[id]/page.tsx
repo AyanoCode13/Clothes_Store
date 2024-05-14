@@ -1,8 +1,8 @@
-import { clothes } from "~/utils/data";
 import AddToCartButton from "./add-to-cart.button";
+import { getClothesById } from "~/utils/clothes";
 
 export default function Product({ params }: { params: { id: string } }) {
-    const singleProduct = clothes.find((c) => c.id === params.id);
+    const singleProduct = getClothesById({id:params.id})
     console.log(params.id)
     console.log(singleProduct)
     return (

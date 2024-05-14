@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCart } from "~/providers/cart.provider"
 
-export default function CartButton() {
+export default function CheckoutButton() {
   const cart = useCart();
   const router = useRouter();
   

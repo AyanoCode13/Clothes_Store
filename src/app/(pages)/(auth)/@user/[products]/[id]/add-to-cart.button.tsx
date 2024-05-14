@@ -1,7 +1,7 @@
 "use client"
 
 import { useCart } from "~/providers/cart.provider"
-import type { CartProduct, ProductCardDAO } from "~/types/ProductDAO"
+import type { ProductCardDAO } from "~/types/ProductDAO"
 
 export default function AddToCartButton({product}:{product:ProductCardDAO}) {
     console.log(product)

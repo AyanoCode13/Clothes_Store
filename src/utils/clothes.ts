@@ -1,4 +1,4 @@
-export const clothes = [
+const clothes = [
     {
         id:"1",
         name:"Polo T-Shirt",
@@ -66,7 +66,14 @@ export const clothes = [
 
 ]
 
-export const getClothes = async ({subcategory, category}:{subcategory:string, category:string}) =>{
-  
-    return clothes.filter(c => c.subcategory === subcategory && c.category === category);
+export const getAllClothes = async () =>{
+    return clothes
+}
+
+export const getClothesByCategory = async ({category}:{category:"man" | "woman" | "kid" | "baby"}) =>{
+    return clothes.filter((c) => c.category === category)
+
+}
+export const getClothesById = ({id}:{id:string})=>{
+    return clothes.find((c) => c.id === id)
 }

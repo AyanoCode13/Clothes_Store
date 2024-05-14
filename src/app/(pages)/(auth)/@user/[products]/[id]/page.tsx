@@ -1,5 +1,11 @@
+import { clothes } from "~/utils/data";
+import AddToCartButton from "./add-to-cart.button";
+
 export default function Product({ params }: { params: { id: string } }) {
-  return (
+    const singleProduct = clothes.find((c) => c.id === params.id);
+    console.log(params.id)
+    console.log(singleProduct)
+    return (
     <main className="flex h-screen flex-col items-center justify-center">
       <div className="card h-full w-11/12 bg-base-100 shadow-xl">
         <div className="card h-full w-full bg-base-100 shadow-xl lg:card-side">
@@ -62,10 +68,11 @@ export default function Product({ params }: { params: { id: string } }) {
             </div>
           </div>
           <div className="card-body">
-            <h2 className="card-title">New album is released!</h2>
-            <p>Click the button to listen on Spotiwhy app.</p>
+            <h2 className="card-title">{singleProduct?.name}</h2>
+            <p>Sizes: {singleProduct?.sizes.toString()}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Add To Cart</button>
+                <p>Price: {singleProduct?.price}</p>
+              <AddToCartButton product={singleProduct} />
             </div>
           </div>
         </div>

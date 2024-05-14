@@ -24,7 +24,7 @@ export const clothes = [
         sizes:["S","M","L","XL","XXL"],
     },
     {
-        id:4,
+        id:"4",
         name:"Barbie T-Shirt",
         subcategory:"tops",
         category:"woman",
@@ -32,7 +32,7 @@ export const clothes = [
         sizes:["S","M","L","XL","XXL"],
     },
     {
-        id:5,
+        id:"5",
         name:"Crop Top",
         subcategory:"tops",
         category:"woman",
@@ -40,7 +40,7 @@ export const clothes = [
         sizes:["S","M","L","XL","XXL"],
     },
     {
-        id:6,
+        id:"6",
         name:"Slim Fit Jeans",
         subcategory:"bottoms",
         category:"woman",
@@ -48,7 +48,7 @@ export const clothes = [
         sizes:["S","M","L","XL","XXL"],
     },
     {
-        id:7,
+        id:"7",
         name:"Skinny Jeans",
         subcategory:"bottoms",
         category:"woman",
@@ -56,7 +56,7 @@ export const clothes = [
         sizes:["S","M","L","XL","XXL"],
     },
     {
-        id:8,
+        id:"8",
         name:"Straight Jeans",
         subcategory:"bottoms",
         category:"man",
